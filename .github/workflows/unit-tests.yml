@@ -1,0 +1,17 @@
+name: Unit Tests
+
+on: [push]
+
+jobs:
+  docker-unit-tests:
+    runs-on: ubuntu-latest
+    name: Build and run unit tests Docker Image
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build Docker Image
+        run: docker build -t unit-tests-image -f Dockerfile .
+
+      - name: Run Docker Image
+        run: docker run --rm unit-tests-image
